@@ -1,0 +1,93 @@
+---
+// Hero.astro
+---
+
+<section
+  data-nav="light"
+  class="relative h-screen w-full bg-[#443E7F] overflow-hidden flex flex-col items-center justify-center text-center"
+>
+  <!-- Left Border -->
+  <!-- <img
+    src="/images/Asset2.png"
+    alt="Border Left"
+    class="absolute left-0 top-0 h-full object-cover z-10"
+  /> -->
+
+  <!-- Video Logo -->
+  <div class="mb-8 md:mb-12">
+    <video
+      src="/videos/Bumper.mp4"
+      autoplay
+      muted
+      loop
+      playsinline
+      class="w-[360px] md:w-[2000px] lg:w-[500px] rounded-4xl
+opacity-0 scale-95 transition-all duration-700 ease-out"
+      id="hero-logo"></video>
+  </div>
+
+  <!-- Headline -->
+  <h1
+    class="text-white font-semibold leading-[0.95] tracking-tight px-6
+text-[clamp(2.2rem,6vw,5rem)] md:text-[clamp(3rem,7vw,6.5rem)]"
+  >
+    <span
+      class="block opacity-0 translate-y-10 transition-all duration-700"
+      id="h-line-1"
+    >
+      Engineering cognitive
+    </span>
+
+    <span
+      class="block opacity-0 translate-y-10 transition-all duration-700"
+      id="h-line-2"
+    >
+      storytelling and behavioral
+    </span>
+
+    <span
+      class="block opacity-0 translate-y-10 transition-all duration-700"
+      id="h-line-3"
+    >
+      resonance.
+    </span>
+  </h1>
+
+  <!-- Right Border -->
+  <!-- <img
+    src="/images/Asset2.png"
+    alt="Border Right"
+    class="absolute right-0 top-0 h-full object-cover z-10"
+  /> -->
+</section>
+
+<script>
+  window.addEventListener("load", () => {
+    const logo = document.getElementById("hero-logo");
+    const l1 = document.getElementById("h-line-1");
+    const l2 = document.getElementById("h-line-2");
+    const l3 = document.getElementById("h-line-3");
+
+    // logo masuk dulu
+    setTimeout(() => {
+      logo.classList.remove("opacity-0", "scale-95");
+      logo.classList.add("opacity-100", "scale-100");
+    }, 100);
+
+    // text stagger
+    setTimeout(() => {
+      l1.classList.remove("opacity-0", "translate-y-10");
+      l1.classList.add("opacity-100", "translate-y-0");
+    }, 300);
+
+    setTimeout(() => {
+      l2.classList.remove("opacity-0", "translate-y-10");
+      l2.classList.add("opacity-100", "translate-y-0");
+    }, 450);
+
+    setTimeout(() => {
+      l3.classList.remove("opacity-0", "translate-y-10");
+      l3.classList.add("opacity-100", "translate-y-0");
+    }, 600);
+  });
+</script>

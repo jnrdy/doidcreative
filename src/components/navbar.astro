@@ -1,0 +1,145 @@
+---
+
+---
+
+<nav
+  id="navbar"
+  class="fixed top-0 left-0 w-full z-50 transition-all duration-500"
+>
+  <div
+    id="nav-inner"
+    class="flex items-center justify-between
+    px-8 md:px-16
+    py-6
+    transition-all duration-500"
+  >
+    <!-- LOGO -->
+    <img
+      id="nav-logo"
+      src="/images/new/logo-white.png"
+      alt="DO.ID Logo"
+      class="h-8 md:h-10 object-contain transition-all duration-300 opacity-100"
+    />
+
+    <!-- CTA -->
+    <button
+      id="nav-btn"
+      class="border px-5 py-2.5 text-xs md:text-sm rounded-full transition-all duration-300"
+    >
+      LET'S TALK
+    </button>
+  </div>
+</nav>
+
+<script>
+  const inner = document.getElementById("nav-inner");
+  const btn = document.getElementById("nav-btn");
+  const logo = document.getElementById("nav-logo");
+
+  // =========================
+  // LOGO FADE FUNCTION
+  // =========================
+  const fadeLogo = (newSrc) => {
+    if (logo.src.includes(newSrc)) return;
+
+    logo.style.opacity = 0;
+
+    setTimeout(() => {
+      logo.src = newSrc;
+      logo.style.opacity = 1;
+    }, 150);
+  };
+
+  // =========================
+  // STATE SWITCH
+  // =========================
+  const setLight = () => {
+    btn.className =
+      "border border-white text-white px-5 py-2.5 text-xs md:text-sm rounded-full transition-all duration-300 hover:bg-white hover:text-[#443E7F]";
+
+    fadeLogo("/images/logo-white.png");
+  };
+
+  const setDark = () => {
+    btn.className =
+      "border border-[#443E7F] text-[#443E7F] px-5 py-2.5 text-xs md:text-sm rounded-full transition-all duration-300 hover:bg-[#443E7F] hover:text-white";
+
+    fadeLogo("/images/logo-black.png");
+  };
+
+  // =========================
+  // NAVBAR SHRINK ON SCROLL
+  // =========================
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 50) {
+      inner.classList.add(
+        "py-3",
+        "backdrop-blur-md",
+        "bg-white/10",
+        "shadow-lg",
+      );
+      inner.classList.remove("py-6");
+    } else {
+      inner.classList.remove(
+        "py-3",
+        "backdrop-blur-md",
+        "bg-white/10",
+        "shadow-lg",
+      );
+      inner.classList.add("py-6");
+    }
+  });
+
+  // =========================
+  // SECTION BASED DETECTION
+  // =========================
+  const sections = document.querySelectorAll("[data-nav]");
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const mode = entry.target.getAttribute("data-nav");
+
+          if (mode === "light") setLight();
+          if (mode === "dark") setDark();
+        }
+      });
+    },
+    {
+      root: null,
+      rootMargin: "-40% 0px -40% 0px",
+      threshold: 0,
+    },
+  );
+
+  sections.forEach((section) => observer.observe(section));
+
+  // =========================
+  // INIT
+  // =========================
+  setLight();
+
+  // =========================
+  // SMOOTH SCROLL TO FOOTER (FINAL)
+  // =========================
+  const navBtn = document.getElementById("nav-btn");
+  const footer = document.getElementById("footer");
+
+  if (navBtn && footer) {
+    navBtn.addEventListener("click", () => {
+      // micro interaction (optional tapi bagus)
+      navBtn.classList.add("scale-95");
+
+      setTimeout(() => {
+        navBtn.classList.remove("scale-95");
+      }, 120);
+
+      // smooth scroll
+      footer.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    });
+  }
+</script>

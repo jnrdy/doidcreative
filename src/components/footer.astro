@@ -1,0 +1,136 @@
+---
+import { MapPin, Phone, Mail } from "lucide-react";
+---
+
+<section
+  id="footer"
+  data-nav="light"
+  data-animate
+  class="w-full bg-[#3d3a6d] py-24 md:py-32
+  transition-all duration-700 opacity-90"
+>
+  <div class="max-w-7xl mx-auto px-8 md:px-16">
+    <!-- TOP -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24 items-start">
+      <!-- LEFT -->
+      <div
+        data-animate
+        class="opacity-0 translate-y-5 transition-all duration-700"
+      >
+        <h2
+          class="text-[#FD8181] font-bold leading-[1.05]
+          text-[clamp(3rem,5vw,5rem)]"
+        >
+          Keep <br />
+          Connected <br />
+          With Us
+        </h2>
+
+        <div class="mt-8 w-24 h-2 bg-[#FDC564] rounded-full"></div>
+      </div>
+
+      <!-- RIGHT -->
+      <div
+        data-animate
+        class="flex flex-col gap-12
+  opacity-0 translate-y-5 transition-all duration-700 delay-200"
+      >
+        <!-- ADDRESS -->
+        <div class="flex gap-6">
+          <!-- ICON -->
+          <div
+            class="group w-12 h-12 bg-[#e0b04b] rounded-full flex items-center justify-center
+  transition-all duration-300 ease-out
+  hover:-translate-y-2 hover:bg-[#f28b82]
+  text-[#443E7F] hover:text-white"
+          >
+            <MapPin class="w-5 h-5" />
+          </div>
+          <!-- TEXT -->
+          <div>
+            <p class="text-[#FDC564] font-semibold text-lg">Address:</p>
+
+            <p
+              class="mt-2 text-white/80 leading-relaxed text-sm md:text-base max-w-sm"
+            >
+              Gedung Office 8, Level 18-A.<br />
+              Jalan Senopati No. 8B, Kawasan SCBD<br />Kel. Senayan, Kec.
+              Kebayoran Baru,
+              <br />Jakarta Selatan, 12190 DKI Jakarta
+            </p>
+          </div>
+        </div>
+
+        <!-- PHONE -->
+        <div class="flex gap-6">
+          <div
+            class="group w-12 h-12 bg-[#e0b04b] rounded-full flex items-center justify-center
+  transition-all duration-300 ease-out
+  hover:-translate-y-2 hover:bg-[#f28b82]
+  text-[#443E7F] hover:text-white"
+          >
+            <Phone class="w-5 h-5" />
+          </div>
+
+          <div>
+            <p class="text-[#FDC564] font-semibold text-lg">Phone:</p>
+
+            <a
+              href="https://wa.me/628116840222"
+              class="mt-2 inline-block text-white/80 text-sm md:text-base
+      transition-colors duration-300
+      hover:text-[#FD8181]"
+            >
+              +62811-6840-222
+            </a>
+          </div>
+        </div>
+
+        <!-- EMAIL -->
+        <div class="flex gap-6">
+          <div
+            class="group w-12 h-12 bg-[#e0b04b] rounded-full flex items-center justify-center
+  transition-all duration-300 ease-out
+  hover:-translate-y-2 hover:bg-[#f28b82]
+  text-[#443E7F] hover:text-white"
+          >
+            <Mail class="w-5 h-5" />
+          </div>
+
+          <div>
+            <p class="text-[#FDC564] font-semibold text-lg">Email:</p>
+
+            <a
+              href="mailto:hello@doidcreative.com"
+              class="mt-2 inline-block text-white/80 text-sm md:text-base
+      transition-colors duration-300
+      hover:text-[#FD8181]"
+            >
+              hello@doidcreative.com
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DIVIDER -->
+    <div
+      data-animate
+      class="mt-20 border-t border-white/20
+  opacity-0 transition-all duration-700 delay-300"
+    >
+      <!-- BOTTOM -->
+      <div
+        data-animate
+        class="mt-8 flex flex-col md:flex-row justify-between items-center gap-4
+  opacity-0 translate-y-5 transition-all duration-700 delay-400"
+      >
+        <p class="text-white/70 text-sm">&copy; 2026 DO.ID Creative.</p>
+
+        <p class="text-white/70 text-xs md:text-sm tracking-widest uppercase">
+          Engineering cognitive storytelling and behavioral resonance.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

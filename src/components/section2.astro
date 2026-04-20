@@ -1,0 +1,92 @@
+<section data-nav="dark" class="w-full h-[80vh] bg-white py-24 md:py-32">
+  <div class="max-w-7xl mx-auto px-8 md:px-16">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-16 md:gap-20">
+      <!-- COL 1 -->
+      <div
+        data-animate
+        class="flex flex-col opacity-0 translate-y-10 transition-all duration-700"
+      >
+        <!-- HEADING WRAPPER -->
+        <div class="min-h-[160px] md:min-h-[240px]">
+          <h3
+            class="font-bold text-[#FD8181] leading-[1.05]
+            text-[clamp(2rem,3vw,3rem)] uppercase"
+          >
+            DO.IDEA: <br />
+            Bringing Ideas To Life
+          </h3>
+        </div>
+
+        <!-- DESC -->
+        <p class="text-black text-base md:text-lg leading-relaxed">
+          Designing action-driven marketing ecosystems instead of relying on
+          theoretical playbooks. Fueled by our "Just Do Id" spirit, every
+          intervention is precisely mapped to address your brand's specific
+          friction points and execute flawlessly.
+        </p>
+      </div>
+
+      <!-- COL 2 -->
+      <div
+        data-animate
+        class="flex flex-col opacity-0 translate-y-10 transition-all duration-700 delay-150"
+      >
+        <div class="min-h-[160px] md:min-h-[240px]">
+          <h3
+            class="font-bold text-[#FDC564] leading-[1.05]
+            text-[clamp(2rem,3vw,3rem)] uppercase"
+          >
+            Regional Mastery & <br />
+            "Can Do" Attitude
+          </h3>
+        </div>
+
+        <p class="text-black text-base md:text-lg leading-relaxed">
+          We don't just follow trends; we guarantee our capabilities to navigate
+          the cultural undercurrents of South-East Asia and the Middle East. Our
+          specialized regional expertise ensures we engineer strategies that
+          resonate profoundly with your target market.
+        </p>
+      </div>
+
+      <!-- COL 3 -->
+      <div
+        data-animate
+        class="flex flex-col opacity-0 translate-y-10 transition-all duration-700 delay-300"
+      >
+        <div class="min-h-[160px] md:min-h-[240px]">
+          <h3
+            class="font-bold text-[#443E7F] leading-[1.05]
+            text-[clamp(2rem,3vw,3rem)] uppercase"
+          >
+            Quantifiable Impact & Monetization
+          </h3>
+        </div>
+
+        <p class="text-black text-base md:text-lg leading-relaxed">
+          Translating emotional engagement into empirical, measurable ROI. We
+          bridge the gap between creative storytelling and rigorous performance
+          tracking to ensure your brand monetizes its potential and achieves
+          sustainable business growth.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.remove("opacity-0", "translate-y-10");
+          entry.target.classList.add("opacity-100", "translate-y-0");
+        }
+      });
+    },
+    { threshold: 0.2 },
+  );
+
+  document.querySelectorAll("[data-animate]").forEach((el) => {
+    observer.observe(el);
+  });
+</script>
