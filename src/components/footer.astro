@@ -119,31 +119,32 @@ import { MapPin, Phone, Mail, FileText } from "lucide-react";
           </div>
 <!-- PROFILE -->
           <a
-            href="https://canva.link/nesy86qh10k3rnr"
-            target="_blank"
-            class="group flex gap-6 items-center"
-          >
-            <!-- ICON -->
-            <div
-              class="w-12 h-12 bg-[#e0b04b] rounded-full flex items-center justify-center
+  href="https://canva.link/nesy86qh10k3rnr"
+  target="_blank"
+  class="group flex gap-6 items-start"
+>
+  <div
+    class="w-12 h-12 bg-[#e0b04b] rounded-full flex items-center justify-center
     transition-all duration-300 ease-out
     group-hover:-translate-y-2 group-hover:bg-[#f28b82]
     text-[#443E7F] group-hover:text-white"
-            >
-              <FileText class="w-5 h-5" />
-            </div>
+  >
+    <FileText class="w-5 h-5" />
+  </div>
 
-            <!-- TEXT -->
-            <p
-              class="text-[#FDC564] font-semibold text-lg
-    transition-colors duration-300
-    group-hover:text-[#FD8181]"
-            >
-              Click to see our full Company profile
-            </p>
-          </a>
-        </div>
-      </div>
+  <div>
+    <p class="text-[#FDC564] font-semibold text-lg">
+      Company Profile
+    </p>
+
+    <p
+      class="mt-2 text-white/80 text-sm md:text-base
+      transition-colors duration-300 group-hover:text-[#FD8181]"
+    >
+      Click to view our full company profile
+    </p>
+  </div>
+</a>
 
       <!-- DIVIDER -->
       <div
@@ -155,7 +156,8 @@ import { MapPin, Phone, Mail, FileText } from "lucide-react";
         <div
           data-animate
           class="mt-8 flex flex-col md:flex-row justify-between items-center gap-4
-  opacity-0 translate-y-5 transition-all duration-700 delay-400"
+text-center md:text-left
+opacity-0 translate-y-5 transition-all duration-700 delay-400"
         >
           <p class="text-white/70 text-sm">&copy; 2026 DO.ID Creative.</p>
 

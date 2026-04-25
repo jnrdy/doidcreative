@@ -7,7 +7,7 @@
 >
   <div
     id="nav-inner"
-    class="flex items-center justify-between px-8 md:px-16 py-6 transition-all duration-500"
+    class="flex items-center justify-between px-6 md:px-16 py-6 transition-all duration-500"
   >
     <!-- LOGO -->
     <img
@@ -17,7 +17,7 @@
       class="h-8 md:h-10 object-contain transition-all duration-300 opacity-100"
     />
 
-    <!-- MENU -->
+    <!-- DESKTOP MENU -->
     <div class="hidden md:flex items-center gap-10">
       <button data-target="home" class="nav-link">HOME</button>
       <button data-target="expertise" class="nav-link">EXPERTISE</button>
@@ -25,15 +25,44 @@
       <button data-target="services" class="nav-link">SERVICES</button>
     </div>
 
-    <!-- CTA -->
+    <!-- HAMBURGER (MOBILE) -->
+    <button
+      id="menu-toggle"
+      class="md:hidden flex flex-col gap-1 z-50"
+    >
+      <span class="w-6 h-[2px] bg-white block"></span>
+      <span class="w-6 h-[2px] bg-white block"></span>
+      <span class="w-6 h-[2px] bg-white block"></span>
+    </button>
+
+    <!-- CTA (DESKTOP ONLY) -->
     <button
       id="nav-btn"
-      class="border px-5 py-2.5 text-xs md:text-sm rounded-full transition-all duration-300"
+      class="hidden md:block border px-5 py-2.5 text-xs md:text-sm rounded-full transition-all duration-300"
     >
       LET'S TALK
     </button>
   </div>
 </nav>
+
+<!-- MOBILE MENU -->
+<div
+  id="mobile-menu"
+  class="fixed inset-0 bg-[#443E7F] z-40 flex flex-col items-center justify-center gap-10
+  opacity-0 pointer-events-none transition-all duration-500"
+>
+  <button data-target="home" class="mobile-link text-white text-2xl font-semibold tracking-wide">HOME</button>
+  <button data-target="expertise" class="mobile-link text-white text-2xl font-semibold tracking-wide">EXPERTISE</button>
+  <button data-target="paradigm" class="mobile-link text-white text-2xl font-semibold tracking-wide">PARADIGM</button>
+  <button data-target="services" class="mobile-link text-white text-2xl font-semibold tracking-wide">SERVICES</button>
+
+  <button
+    id="mobile-cta"
+    class="mt-10 border border-white text-white px-6 py-3 rounded-full"
+  >
+    LET'S TALK
+  </button>
+</div>
 
 <script>
   const inner = document.getElementById("nav-inner");
@@ -41,9 +70,7 @@
   const logo = document.getElementById("nav-logo");
   const links = document.querySelectorAll(".nav-link");
 
-  // =========================
   // LOGO FADE
-  // =========================
   const fadeLogo = (newSrc) => {
     if (logo.src.includes(newSrc)) return;
 
@@ -55,12 +82,12 @@
     }, 150);
   };
 
-  // =========================
   // STATE LIGHT
-  // =========================
   const setLight = () => {
-    btn.className =
-      "border border-white text-white px-5 py-2.5 text-xs md:text-sm rounded-full transition-all duration-300 hover:bg-white hover:text-[#443E7F]";
+    if (btn) {
+      btn.className =
+        "hidden md:block border border-white text-white px-5 py-2.5 text-xs md:text-sm rounded-full transition-all duration-300 hover:bg-white hover:text-[#443E7F]";
+    }
 
     links.forEach((link) => {
       link.className =
@@ -70,12 +97,12 @@
     fadeLogo("/images/logo-white.png");
   };
 
-  // =========================
   // STATE DARK
-  // =========================
   const setDark = () => {
-    btn.className =
-      "border border-[#443E7F] text-[#443E7F] px-5 py-2.5 text-xs md:text-sm rounded-full transition-all duration-300 hover:bg-[#443E7F] hover:text-white";
+    if (btn) {
+      btn.className =
+        "hidden md:block border border-[#443E7F] text-[#443E7F] px-5 py-2.5 text-xs md:text-sm rounded-full transition-all duration-300 hover:bg-[#443E7F] hover:text-white";
+    }
 
     links.forEach((link) => {
       link.className =
@@ -85,9 +112,7 @@
     fadeLogo("/images/logo-black.png");
   };
 
-  // =========================
   // NAVBAR SHRINK
-  // =========================
   window.addEventListener("scroll", () => {
     if (window.scrollY > 50) {
       inner.classList.add(
@@ -108,9 +133,7 @@
     }
   });
 
-  // =========================
   // SECTION COLOR DETECTION
-  // =========================
   const sections = document.querySelectorAll("[data-nav]");
 
   const observer = new IntersectionObserver(
@@ -133,14 +156,10 @@
 
   sections.forEach((section) => observer.observe(section));
 
-  // =========================
   // INIT
-  // =========================
   setLight();
 
-  // =========================
-  // NAV MENU SCROLL
-  // =========================
+  // DESKTOP NAV SCROLL
   const navLinks = document.querySelectorAll(".nav-link");
 
   navLinks.forEach((link) => {
@@ -150,32 +169,63 @@
 
       if (!target) return;
 
-      const yOffset = -80;
-      const y =
-        target.getBoundingClientRect().top +
-        window.pageYOffset +
-        yOffset;
-
-      window.scrollTo({
-        top: y,
+      target.scrollIntoView({
         behavior: "smooth",
+        block: "start",
       });
     });
   });
 
-  // =========================
-  // CTA SCROLL TO FOOTER
-  // =========================
-  const navBtn = document.getElementById("nav-btn");
-  const footer = document.getElementById("footer");
+  // MOBILE MENU TOGGLE
+  const toggle = document.getElementById("menu-toggle");
+  const mobileMenu = document.getElementById("mobile-menu");
 
-  if (navBtn && footer) {
-    navBtn.addEventListener("click", () => {
-      navBtn.classList.add("scale-95");
+  toggle.addEventListener("click", () => {
+    mobileMenu.classList.toggle("opacity-0");
+    mobileMenu.classList.toggle("pointer-events-none");
+  });
+
+  // MOBILE LINK SCROLL + CLOSE
+  const mobileLinks = document.querySelectorAll(".mobile-link");
+
+  mobileLinks.forEach((link) => {
+    link.addEventListener("click", () => {
+      const targetId = link.getAttribute("data-target");
+      const target = document.getElementById(targetId);
+
+      mobileMenu.classList.add("opacity-0", "pointer-events-none");
+
+      if (!target) return;
+
+      target.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    });
+  });
+
+  // CTA SCROLL (DESKTOP + MOBILE)
+  const footer = document.getElementById("footer");
+  const mobileCta = document.getElementById("mobile-cta");
+
+  if (btn && footer) {
+    btn.addEventListener("click", () => {
+      btn.classList.add("scale-95");
 
       setTimeout(() => {
-        navBtn.classList.remove("scale-95");
+        btn.classList.remove("scale-95");
       }, 120);
+
+      footer.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    });
+  }
+
+  if (mobileCta && footer) {
+    mobileCta.addEventListener("click", () => {
+      mobileMenu.classList.add("opacity-0", "pointer-events-none");
 
       footer.scrollIntoView({
         behavior: "smooth",
