@@ -71,3 +71,41 @@ body {
 button {
   font-weight: 700 !important;
 }
+
+/* BASE LINE */
+.line {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: white;
+  transition: all 0.3s ease;
+}
+
+/* NAVBAR */
+/* POSITION */
+.line.top {
+  top: 4px;
+}
+.line.middle {
+  top: 50%;
+  transform: translateY(-50%);
+}
+.line.bottom {
+  bottom: 4px;
+}
+
+/* ACTIVE STATE (JADI X) */
+.menu-open .line.top {
+  top: 50%;
+  transform: translateY(-50%) rotate(45deg);
+}
+
+.menu-open .line.middle {
+  opacity: 0;
+}
+
+.menu-open .line.bottom {
+  bottom: 50%;
+  transform: translateY(50%) rotate(-45deg);
+}

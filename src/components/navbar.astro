@@ -1,4 +1,5 @@
 ---
+
 ---
 
 <nav
@@ -26,13 +27,10 @@
     </div>
 
     <!-- HAMBURGER (MOBILE) -->
-    <button
-      id="menu-toggle"
-      class="md:hidden flex flex-col gap-1 z-50"
-    >
-      <span class="w-6 h-[2px] bg-white block"></span>
-      <span class="w-6 h-[2px] bg-white block"></span>
-      <span class="w-6 h-[2px] bg-white block"></span>
+    <button id="menu-toggle" class="md:hidden relative w-6 h-6 z-50">
+      <span class="line top"></span>
+      <span class="line middle"></span>
+      <span class="line bottom"></span>
     </button>
 
     <!-- CTA (DESKTOP ONLY) -->
@@ -51,10 +49,26 @@
   class="fixed inset-0 bg-[#443E7F] z-40 flex flex-col items-center justify-center gap-10
   opacity-0 pointer-events-none transition-all duration-500"
 >
-  <button data-target="home" class="mobile-link text-white text-2xl font-semibold tracking-wide">HOME</button>
-  <button data-target="expertise" class="mobile-link text-white text-2xl font-semibold tracking-wide">EXPERTISE</button>
-  <button data-target="paradigm" class="mobile-link text-white text-2xl font-semibold tracking-wide">PARADIGM</button>
-  <button data-target="services" class="mobile-link text-white text-2xl font-semibold tracking-wide">SERVICES</button>
+  <button
+    data-target="home"
+    class="mobile-link text-white text-2xl font-semibold tracking-wide"
+    >HOME</button
+  >
+  <button
+    data-target="expertise"
+    class="mobile-link text-white text-2xl font-semibold tracking-wide"
+    >EXPERTISE</button
+  >
+  <button
+    data-target="paradigm"
+    class="mobile-link text-white text-2xl font-semibold tracking-wide"
+    >PARADIGM</button
+  >
+  <button
+    data-target="services"
+    class="mobile-link text-white text-2xl font-semibold tracking-wide"
+    >SERVICES</button
+  >
 
   <button
     id="mobile-cta"
@@ -69,8 +83,11 @@
   const btn = document.getElementById("nav-btn");
   const logo = document.getElementById("nav-logo");
   const links = document.querySelectorAll(".nav-link");
+  const hamburgerLines = document.querySelectorAll("#menu-toggle span");
 
+  // =========================
   // LOGO FADE
+  // =========================
   const fadeLogo = (newSrc) => {
     if (logo.src.includes(newSrc)) return;
 
@@ -82,7 +99,9 @@
     }, 150);
   };
 
+  // =========================
   // STATE LIGHT
+  // =========================
   const setLight = () => {
     if (btn) {
       btn.className =
@@ -94,10 +113,17 @@
         "nav-link text-white text-sm tracking-wide font-medium transition-all duration-300 hover:opacity-70 hover:scale-105 active:scale-95";
     });
 
+    // HAMBURGER COLOR (LIGHT)
+    hamburgerLines.forEach((line) => {
+      line.style.backgroundColor = "white";
+    });
+
     fadeLogo("/images/logo-white.png");
   };
 
+  // =========================
   // STATE DARK
+  // =========================
   const setDark = () => {
     if (btn) {
       btn.className =
@@ -109,17 +135,24 @@
         "nav-link text-[#443E7F] text-sm tracking-wide font-medium transition-all duration-300 hover:opacity-70 hover:scale-105 active:scale-95";
     });
 
+    // HAMBURGER COLOR (DARK)
+    hamburgerLines.forEach((line) => {
+      line.style.backgroundColor = "#443E7F";
+    });
+
     fadeLogo("/images/logo-black.png");
   };
 
+  // =========================
   // NAVBAR SHRINK
+  // =========================
   window.addEventListener("scroll", () => {
     if (window.scrollY > 50) {
       inner.classList.add(
         "py-3",
         "backdrop-blur-md",
         "bg-white/10",
-        "shadow-lg"
+        "shadow-lg",
       );
       inner.classList.remove("py-6");
     } else {
@@ -127,13 +160,15 @@
         "py-3",
         "backdrop-blur-md",
         "bg-white/10",
-        "shadow-lg"
+        "shadow-lg",
       );
       inner.classList.add("py-6");
     }
   });
 
+  // =========================
   // SECTION COLOR DETECTION
+  // =========================
   const sections = document.querySelectorAll("[data-nav]");
 
   const observer = new IntersectionObserver(
@@ -151,15 +186,19 @@
       root: null,
       rootMargin: "-40% 0px -40% 0px",
       threshold: 0,
-    }
+    },
   );
 
   sections.forEach((section) => observer.observe(section));
 
+  // =========================
   // INIT
+  // =========================
   setLight();
 
+  // =========================
   // DESKTOP NAV SCROLL
+  // =========================
   const navLinks = document.querySelectorAll(".nav-link");
 
   navLinks.forEach((link) => {
@@ -176,16 +215,22 @@
     });
   });
 
-  // MOBILE MENU TOGGLE
+  // =========================
+  // MOBILE MENU TOGGLE + ANIMATION
+  // =========================
   const toggle = document.getElementById("menu-toggle");
   const mobileMenu = document.getElementById("mobile-menu");
 
   toggle.addEventListener("click", () => {
     mobileMenu.classList.toggle("opacity-0");
     mobileMenu.classList.toggle("pointer-events-none");
+
+    toggle.classList.toggle("menu-open"); // <-- animasi X
   });
 
+  // =========================
   // MOBILE LINK SCROLL + CLOSE
+  // =========================
   const mobileLinks = document.querySelectorAll(".mobile-link");
 
   mobileLinks.forEach((link) => {
@@ -194,6 +239,7 @@
       const target = document.getElementById(targetId);
 
       mobileMenu.classList.add("opacity-0", "pointer-events-none");
+      toggle.classList.remove("menu-open"); // <-- balik ke hamburger
 
       if (!target) return;
 
@@ -204,7 +250,9 @@
     });
   });
 
+  // =========================
   // CTA SCROLL (DESKTOP + MOBILE)
+  // =========================
   const footer = document.getElementById("footer");
   const mobileCta = document.getElementById("mobile-cta");
 
@@ -226,6 +274,7 @@
   if (mobileCta && footer) {
     mobileCta.addEventListener("click", () => {
       mobileMenu.classList.add("opacity-0", "pointer-events-none");
+      toggle.classList.remove("menu-open");
 
       footer.scrollIntoView({
         behavior: "smooth",
